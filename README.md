@@ -1,18 +1,20 @@
 # collatz
 
-A Quil sketch designed to ... well, that part is up to you.
+> I still need to write the visualisation in quil. But the sequence works fine.
 
-## Usage
+The [Collatz conjecture][wiki] in Clojure as a lazy sequence. Also includes a neat visualisation inspired by [this awesome video][numberphile], you can run the visualisation with `lein run`.
 
-LightTable - open `core.clj` and press `Ctrl+Shift+Enter` to evaluate the file.
+You'll find the actual Collatz sequence function in the `collatz.core` namespace.
 
-Emacs - run cider, open `core.clj` and press `C-c C-k` to evaluate the file.
+```clojure
+(ns cool.thing
+  (:require [collatz.core :as c]))
 
-REPL - run `(require 'collatz.core)`.
+(first (c/collatz 1000)) ;; Returns 1000, the seq starts where you specify and counts down.
+(last (c/collatz 1000)) ;; Returns 1, as it always will be, I assume?
+```
 
-## License
+If the last value is ever not 1, notify your closest mathematician and run.
 
-Copyright © 2016 FIXME
-
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+[wiki]: https://en.wikipedia.org/wiki/Collatz_conjecture
+[numberphile]: https://www.youtube.com/watch?v=LqKpkdRRLZw
