@@ -1,6 +1,7 @@
-(ns collatz.core
+(ns collatz.visualisation
   (:require [quil.core :as q]
-            [quil.middleware :as m]))
+            [quil.middleware :as m])
+  (:gen-class))
 
 (defn setup []
   (q/frame-rate 30)
@@ -12,7 +13,7 @@
 
 (defn draw-state [state]
   (q/background 240)
-  (q/fill (:color state) 255 255)
+  (q/fill 0 255 255)
   (q/ellipse 100 100 100 100))
 
 (defn -main []
