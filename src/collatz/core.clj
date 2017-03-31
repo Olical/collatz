@@ -15,7 +15,7 @@
     (odd? n)  (-> n (* 3) (inc))))
 
 (defn collatz
-  "Generate a lazy-seq Collatz conjecture numbers starting at the given number."
+  "Generate a lazy-seq of Collatz conjecture numbers starting at the given number until 1."
   [n]
   {:pre [(number-gt-zero? n)]}
   (lazy-seq
