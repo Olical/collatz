@@ -25,12 +25,16 @@
   [[bn branch]]
   (q/push-matrix)
   (doseq [[pn part] branch]
-    (q/stroke (+ 155 (mod bn 100)) 100 100)
-    (q/stroke-weight 3)
+    (q/stroke 0)
+    (q/stroke-weight 15)
     (q/line 0 0 0 part-size)
 
+    (q/stroke (+ 155 (mod bn 100)) 100 100)
+    (q/stroke-weight 13)
+    (q/line 0 (if (= pn 0) 0 -3) 0 part-size)
+
     (q/translate 0 part-size)
-    (q/rotate (q/radians (if (even? part) 5 -5))))
+    (q/rotate (q/radians (if (even? part) 4 -4))))
   (q/pop-matrix))
 
 (defn setup
