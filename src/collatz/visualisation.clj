@@ -17,7 +17,7 @@
   (->> n c/collatz-tree (map reversed-indexed) reversed-indexed))
 
 (def size {:x 800 :y 800})
-(def tree (gen-tree 10000))
+(def tree (gen-tree 1000))
 (def part-size 5)
 
 (defn render-branch
@@ -40,22 +40,32 @@
 (defn setup
   "Set up the context and state."
   []
-  (q/frame-rate 0.5)
-  {:tree tree})
+  (q/frame-rate 25)
+  {:tree tree
+   :render? false})
 
 (defn update-state
   "Perform modifications to the state for the next render."
   [state]
-  {:tree tree})
+  {:tree tree
+   :render? (:should-render? state)})
 
 (defn draw-state
   "Render the current state."
   [state]
-  (q/background 255 255 255)
-  (q/translate 200 (-> size :y (- 20)))
-  (q/rotate (q/radians 110))
-  (doseq [branch (:tree state)]
-    (render-branch branch)))
+  (when (:render? state)
+    (q/background 255 255 255)
+    (q/translate 200 (-> size :y (- 20)))
+    (q/rotate (q/radians 110))
+    (doseq [branch (:tree state)]
+      (render-branch branch))))
+
+(defn key-pressed
+  "Handle a key press event."
+  [state event]
+  (case (:key-code event)
+    10 (assoc state :should-render? true)
+    state))
 
 (defn -main
   "Initialise the sketch."
@@ -67,4 +77,5 @@
    :update #'update-state
    :draw #'draw-state
    :features []
-   :middleware [m/fun-mode]))
+   :middleware [m/fun-mode]
+   :key-pressed key-pressed))

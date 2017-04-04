@@ -1,8 +1,10 @@
 # collatz
 
-> I still need to write the visualisation in quil. But the sequence works fine.
-
 The [Collatz conjecture][wiki] in Clojure as a lazy sequence. Also includes a neat visualisation inspired by [this awesome video][numberphile], you can run the visualisation with `lein run`.
+
+Nothing will render until you hit the `Enter` key, and even then it may take a little while, it's fairly CPU intensive.
+
+> Visualisation is still completely wrong right now, it still looks kind of neat, but it's not the final product.
 
 You'll find the actual Collatz sequence function in the `collatz.core` namespace.
 
