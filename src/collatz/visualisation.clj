@@ -20,25 +20,17 @@
 (def tree (gen-tree 10000))
 (def part-size 8)
 
-(defn divisible? [a b]
-  (zero? (mod a b)))
-
-(defn prime? [n]
-  (and (> n 1) (not-any? (partial divisible? n) (range 2 n))))
-
 (defn render-branch
   "Render a single Collatz branch."
   [[bn branch]]
   (q/push-matrix)
   (doseq [[pn part] branch]
-    (if (prime? part)
-      (q/stroke 50 200 50)
-      (q/stroke (+ 155 (mod bn 100)) 100 100))
+    (q/stroke (+ 155 (mod bn 100)) 100 100)
     (q/stroke-weight 3)
     (q/line 0 0 0 part-size)
 
     (q/translate 0 part-size)
-    (q/rotate (q/radians (if (even? part) 4.5 -4.5))))
+    (q/rotate (q/radians (if (even? part) 5 -5))))
   (q/pop-matrix))
 
 (defn setup
